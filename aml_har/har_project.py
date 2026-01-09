@@ -28,6 +28,7 @@ df = pd.read_csv(RAW_PATH,
                  on_bad_lines="skip")
 
 print("\n[RAW DATA]")
+print("Data type before cleaning:", df.dtypes)
 print("Shape:", df.shape)
 print(df.head(5))
 print("\nMissing values:\n", df.isna().sum())
@@ -53,6 +54,8 @@ df = df.sort_values(["user", "timestamp"]).reset_index(drop=True)
 print("\n[CLEAN DATA]")
 print("After cleaning shape:", df.shape)
 print("Missing values after cleaning:\n", df.isna().sum())
+print("\nActivity counts after cleaning:\n", df["activity"].value_counts())
+print("Data type after cleaning:", df.dtypes)
 
 # Save cleaned dataset
 df.to_csv(CLEAN_PATH, index=False)
@@ -108,6 +111,7 @@ plt.xlabel("Time steps (within window)")
 plt.ylabel("Acceleration")
 plt.legend()
 plt.tight_layout()
+plt.savefig("data/processed/Window_signal.png", dpi=200)
 plt.show()
 
 # STEP 4: Random Forest model (ML Model)
@@ -190,7 +194,7 @@ plt.savefig("data/processed/rf_recall_by_class.png", dpi=200)
 plt.show()
 
 
-## STEP 5: CNN Model (Deep learning)
+# STEP 5: CNN Model (Deep learning)
 label_encode = LabelEncoder()
 y_enc = label_encode.fit_transform(y)
 
