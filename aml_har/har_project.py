@@ -28,7 +28,7 @@ df = pd.read_csv(RAW_PATH,
                  on_bad_lines="skip")
 
 print("\n[RAW DATA]")
-print("Data type before cleaning:", df.dtypes)
+print("Data type before cleaning:\n", df.dtypes)
 print("Shape:", df.shape)
 print(df.head(5))
 print("\nMissing values:\n", df.isna().sum())
@@ -55,7 +55,7 @@ print("\n[CLEAN DATA]")
 print("After cleaning shape:", df.shape)
 print("Missing values after cleaning:\n", df.isna().sum())
 print("\nActivity counts after cleaning:\n", df["activity"].value_counts())
-print("Data type after cleaning:", df.dtypes)
+print("\nData type after cleaning:\n", df.dtypes)
 
 # Save cleaned dataset
 df.to_csv(CLEAN_PATH, index=False)
