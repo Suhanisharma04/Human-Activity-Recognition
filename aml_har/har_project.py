@@ -62,7 +62,7 @@ df.to_csv(CLEAN_PATH, index=False)
 print("Saved cleaned dataset:", CLEAN_PATH)
 
 
-# STEP 3: Preprocessing/Windowing
+# STEP 3: Windowing (Processing)
 window_size = 100
 step_size = 50
 X_list = []
@@ -99,7 +99,7 @@ print("y shape:", y.shape)
 np.savez(WINDOWS_PATH, X=X, y=y)
 print("Saved windows:", WINDOWS_PATH)
 
-# pick a window index you want to visualize
+# window index visualization
 i = 0
 
 plt.figure()
@@ -148,7 +148,7 @@ sample_X = X_test[0].reshape(1, -1)
 sample_true = label_encode_loaded.inverse_transform([y_test[0]])[0]
 sample_pred = label_encode_loaded.inverse_transform([rf_loaded.predict(sample_X)[0]])[0]
 
-print("Loaded RF prediction (1 sample) -> True:", sample_true, "| Pred:", sample_pred)
+print("\nLoaded RF prediction (1 sample) -> True:", sample_true, "| Pred:", sample_pred)
 
 # Confusion matrix plot
 ConfusionMatrixDisplay.from_predictions(
